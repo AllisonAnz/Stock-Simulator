@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useNavigate } from 'react-router'
+
+import SearchForm from './components/forms/SearchForm';
+
+import NavigationBar from './components/nav/Navbar';
 import './App.css';
 
-function App() {
+const App = () => {
+ 
+  const fetchAPI = () => {
+    fetch('http://localhost:3000/stocks').then(response => {
+      console.log(response);
+      return response.json();
+    }).then(data => {
+      // Work with JSON data here
+      console.log(data);
+    }).catch(err => {
+      // Do something for an error here
+      console.log("Error Reading data " + err);
+    });
+  }
+
+  useEffect(() => {
+    //fetchAPI()
+  }, [])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavigationBar  />
+      <Routes>
+        <Route path="/search" element= {<SearchForm />} />
+      </Routes>
+     
     </div>
   );
 }
