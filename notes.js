@@ -30,3 +30,48 @@ const searchStock = () => {
             setErrors(true);
         });
 }
+
+//-------------------------------------------------------------------------------------
+//Dashboard 
+if (stockData) {
+
+    return (
+
+        <div>
+            <h1>Dashboard</h1>
+            <br />
+            <div>
+                {stockData.map((stock) => {
+                    return (
+                        <ul key={stock.symbol}>
+                            {stock.symbol}: {stock.latest_price}
+                            <button value={stock.symbol} onClick={handleClick}>view</button></ul>
+                    )
+
+                }
+
+                )}
+
+            </div>
+        </div>
+    )
+} else {
+    return (<div>Sign Up to View This Page</div>)
+}
+    
+    
+////---------------------------------
+<tr>
+    <th scope="row">1</th>
+    <td>Mark</td>
+    <td>Otto</td>
+    <td>@mdo</td>
+    <td>@mdo</td>
+</tr>
+
+//-----
+ <Col sm>
+                        <div className="p-3 border bg-light">
+                            Custom column padding
+                        </div>
+                    </Col>

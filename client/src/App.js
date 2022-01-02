@@ -8,6 +8,7 @@ import StockSearch from './containers/SearchContainer';
 import Home from './components/home/Home';
 import Dashboard from './components/home/Dashboard';
 import StockPage from './components/StockPage/StockPage';
+import StockSpreadsheet from './components/home/DashboardComponents.js/StockSpreadsheet';
 
 import NavigationBar from './components/nav/Navbar';
 import './App.css';
@@ -72,7 +73,8 @@ const App = () => {
         <Route index path="/" element={ <Home user={user} loggedIn={loggedIn} handleLogin={handleLogin} /> } />
         <Route path="/dashboard" element={<Dashboard user={user.user} stocks={user.stocks} loggedIn={loggedIn}/>} />
         <Route path="/search" element= {<StockSearch />} />
-        <Route path="/stock/:id" element={<StockPage stock={stuff} />} />
+        <Route path="/stock/:id" element={<StockPage user={user.user} />} />
+        <Route path="/spreadsheet" element={<StockSpreadsheet />} />
        
       </Routes>
      

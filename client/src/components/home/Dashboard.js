@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner'
-import StockPage from '../StockPage/StockPage';
+import StockSpreadsheet from './DashboardComponents.js/StockSpreadsheet';
 
-const Dashboard = ({user, stocks, loggedIn}) => {
+const Dashboard = ({stocks, loggedIn}) => {
     const [loading, setLoading] = useState(true)
     const [errors, setErrors] = useState(false)
     const [stockData, setStockData] = useState({})
@@ -32,19 +32,10 @@ const Dashboard = ({user, stocks, loggedIn}) => {
         
        const data = stocks.map(stock => {
            if(stock.ticker === e.target.value){
-               navigate(`/stock/${stock.id}`)
+               navigate(`/stock/${stock.ticker}`)
         }
     })
-
-
-       
-      
-       //{ <StockPage stock={data}/> } 
-      //handleStuff(data)
-       
-       //navigate(`/stock/${data.id}`)
-        
-        
+       //{ <StockPage stock={data}/> }           
     }
 
 
@@ -61,16 +52,8 @@ const Dashboard = ({user, stocks, loggedIn}) => {
             <h1>Dashboard</h1>
             <br/>
             <div>
-                {stockData.map((stock) => { 
-                    return (
-                    <ul key={stock.symbol}>
-                        {stock.symbol}: {stock.latest_price} 
-                        <button value={stock.symbol} onClick={handleClick}>view</button></ul>
-                    )
-                   
+                {stockData ? <StockSpreadsheet stocks={stockData} handleClick={handleClick}/> : ""
                 }
-                
-                )}
             
             </div>
         </div>

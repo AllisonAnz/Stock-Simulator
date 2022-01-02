@@ -5,6 +5,6 @@ class Stock < ApplicationRecord
         
          @api = StockQuote::Stock.new(api_key:  ENV['API_KEY'])
          
-         stock = StockQuote::Stock.quote(ticker).to_json
+         stock = StockQuote::Stock.quote(ticker)
     end
 end
