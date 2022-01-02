@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 
 const SearchForm = ({ handleSearchResults, handleSearchClick }) => {
@@ -13,20 +14,12 @@ const SearchForm = ({ handleSearchResults, handleSearchClick }) => {
 
     const searchStock = () => {
         setErrors(false)
-        var axios = require('axios');
-
-        var config = {
-            method: 'get',
-            url: `http://localhost:3000/search_stocks?ticker="${ticker}"`,
-           
-        };
-
-        axios(config)
-            .then(function (response) {
+        axios.get(`http://localhost:3000/search_stocks?ticker="${ticker}"`)
+            .then((response) => {
                 setResults(response.data)
                 handleSearchResults(response.data);
             })
-            .catch(function () {
+            .catch(() => {
                 setErrors(true);
             });
         }

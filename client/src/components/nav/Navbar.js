@@ -21,7 +21,7 @@ const NavigationBar = ({loggedIn, onLogout}) => {
         <>
             <Navbar bg="light" expand={false}>
                 <Container fluid>
-                    <Navbar.Brand href="#">Stocks</Navbar.Brand>
+                    <Navbar.Brand>Stocks</Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
                         id="offcanvasNavbar"
@@ -33,7 +33,11 @@ const NavigationBar = ({loggedIn, onLogout}) => {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link href="/">Home</Nav.Link>
+                                {loggedIn ? (
+                                    <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                                ) 
+                                    : (<Nav.Link href="/">Home</Nav.Link>)}
+                               
                                 <Nav.Link href="/search">Search For Stocks</Nav.Link>
                                 <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
                                     <NavDropdown.Item href="#action3">Action</NavDropdown.Item>

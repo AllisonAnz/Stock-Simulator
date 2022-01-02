@@ -3,8 +3,11 @@ class StocksController < ApplicationController
    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def index
+    #byebug
    stocks = @current_user.stocks.all
-   render json: stocks
+   tickers = stocks.map{|x| x[:ticker]}
+   stock_quote = Stock.get_stock(tickers)
+   render json: stock_quote
   end
 
   def show 

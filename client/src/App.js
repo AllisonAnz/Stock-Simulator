@@ -7,6 +7,7 @@ import axios from 'axios';
 import StockSearch from './containers/SearchContainer';
 import Home from './components/home/Home';
 import Dashboard from './components/home/Dashboard';
+import StockPage from './components/StockPage/StockPage';
 
 import NavigationBar from './components/nav/Navbar';
 import './App.css';
@@ -15,6 +16,7 @@ const App = () => {
   const [user, setUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [stuff, setStuff] = useState({})
 
 
   const handleLogin = (data) => {
@@ -46,23 +48,14 @@ const App = () => {
     setLoggedIn(false)
     setUser({})
   }
- 
-  const fetchAPI = () => {
-    fetch('http://localhost:3000/stocks').then(response => {
-      console.log(response);
-      return response.json();
-    }).then(data => {
-      // Work with JSON data here
-      console.log(data);
-    }).catch(err => {
-      // Do something for an error here
-      console.log("Error Reading data " + err);
-    });
+
+  const handleStuff = (data) => {
+    setStuff(data)
   }
+ 
 
  useEffect(() => {
-    //fetchAPI()
-   
+    setLoading(true)
     checkLoginStatus()
   }, [])
 
@@ -76,9 +69,10 @@ const App = () => {
     <div className="App">
       <NavigationBar  loggedIn={loggedIn} onLogout={handleLogout}/>
       <Routes>
-        <Route index path="/" element={ loggedIn ? <Dashboard user={user} loggedIn={loggedIn} /> : <Home user={user} loggedIn={loggedIn} handleLogin={handleLogin}/>} />
-         <Route path="/dashboard" element={<Dashboard user={user} loggedIn={loggedIn}/>} />
+        <Route index path="/" element={ <Home user={user} loggedIn={loggedIn} handleLogin={handleLogin} /> } />
+        <Route path="/dashboard" element={<Dashboard user={user.user} stocks={user.stocks} loggedIn={loggedIn}/>} />
         <Route path="/search" element= {<StockSearch />} />
+        <Route path="/stock/:id" element={<StockPage stock={stuff} />} />
        
       </Routes>
      
