@@ -1,0 +1,2 @@
+module SearchStocksHelper
+end

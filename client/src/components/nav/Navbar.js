@@ -34,7 +34,7 @@ const NavigationBar = ({loggedIn, onLogout}) => {
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <Nav.Link href="/">Home</Nav.Link>
-                                <Nav.Link href="#action2">Link</Nav.Link>
+                                <Nav.Link href="/search">Search For Stocks</Nav.Link>
                                 <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
                                     <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>

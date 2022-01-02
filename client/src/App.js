@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios';
 
-import SearchForm from './components/forms/SearchForm';
+//import SearchForm from './components/forms/SearchForm';
+import StockSearch from './containers/SearchContainer';
 import Home from './components/home/Home';
 import Dashboard from './components/home/Dashboard';
 
@@ -12,9 +14,11 @@ import './App.css';
 const App = () => {
   const [user, setUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
+  const [loading, setLoading] = useState(true)
+
 
   const handleLogin = (data) => {
-    setUser(data.user)
+    setUser(data)
     setLoggedIn(true)
   }
 
@@ -25,15 +29,16 @@ const App = () => {
     .then(response => {
      if (response.data.logged_in && loggedIn === false ) {
        setLoggedIn(true)
-       setUser(response.data.user)
-     }
-     else if (!response.data.logged_in && loggedIn === true ){
-       setLoggedIn(false)
-       setUser({})
+       setUser(response.data)
+      }
+      else if (!response.data.logged_in && loggedIn === true ){
+        setLoggedIn(false)
+        setUser({})
       }
     })
     .catch(error => {console.log("check login error", error);
-    })
+  })
+    setLoading(false)
   }
 
   const handleLogout = () => {
@@ -57,17 +62,23 @@ const App = () => {
 
  useEffect(() => {
     //fetchAPI()
+   
     checkLoginStatus()
   }, [])
+
+  if (loading) return (
+      <Spinner animation="border" role="status">
+         <span className="visually-hidden">Loading...</span>
+      </Spinner>)
 
 
   return (
     <div className="App">
       <NavigationBar  loggedIn={loggedIn} onLogout={handleLogout}/>
       <Routes>
-        <Route index path="/" element={<Home user={user} loggedIn={loggedIn} handleLogin={handleLogin}/>} />
+        <Route index path="/" element={ loggedIn ? <Dashboard user={user} loggedIn={loggedIn} /> : <Home user={user} loggedIn={loggedIn} handleLogin={handleLogin}/>} />
          <Route path="/dashboard" element={<Dashboard user={user} loggedIn={loggedIn}/>} />
-        <Route path="/search" element= {<SearchForm />} />
+        <Route path="/search" element= {<StockSearch />} />
        
       </Routes>
      

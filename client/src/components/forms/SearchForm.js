@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const SearchForm = () => {
+const SearchForm = ({ handleSearchResults, handleSearchClick }) => {
     const [ticker, setTicker] = useState("")
     const [errors, setErrors] = useState(false)
     const [results, setResults] = useState(null)
@@ -17,13 +17,14 @@ const SearchForm = () => {
 
         var config = {
             method: 'get',
-            url: `http://localhost:3000/stocks?ticker="${ticker}"`,
+            url: `http://localhost:3000/search_stocks?ticker="${ticker}"`,
            
         };
 
         axios(config)
             .then(function (response) {
-                setResults(response.data);
+                setResults(response.data)
+                handleSearchResults(response.data);
             })
             .catch(function () {
                 setErrors(true);
@@ -41,7 +42,12 @@ const SearchForm = () => {
             <br/>
             <div>
             { errors ? (<div>Stock does not exisit</div>) : ("")}
-            { results ? (<div>{results.company_name} ${results.latest_price} </div>) : ("")}
+                {results ? (
+                    <button type="button" className="btn btn-link" onClick={handleSearchClick}>
+                        {results.company_name} ${results.latest_price} <br/>
+                    </button> ) 
+                    
+                    : ("")}
             </div>
        </>
    )

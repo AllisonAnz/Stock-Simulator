@@ -10,7 +10,8 @@ class RegistrationsController < ApplicationController
             session[:user_id] = user.id 
             render json: {
                 status: :created,
-                user: user 
+                 user: user.as_json(:only => [:email, :id]),
+              stocks: user.stocks.as_json(:only => [:id, :ticker])
             }
         else 
            render json: { errors: user.errors.full_messages }, status: 500

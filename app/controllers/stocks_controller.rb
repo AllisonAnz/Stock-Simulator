@@ -1,14 +1,29 @@
 class StocksController < ApplicationController
+    include CurrentUserConcern
+   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+
   def index
-    @api = StockQuote::Stock.new(api_key:  ENV['API_KEY'])
-    #if params[:ticker] == "\"\""
-      #@stock = "Enter a Symbol"
-      
-    if params[:ticker]
-      @stock= StockQuote::Stock.quote(params[:ticker])
-    end
-    render json: @stock
+   stocks = @current_user.stocks.all
+   render json: stocks
   end
- 
-  
+
+  def show 
+  end
+
+  def create
+    
+    add_stock = @current_user.stocks.find_or_create_by!(stock_params)
+    render json: add_stock
+  end
+
+  private 
+
+  def stock_params 
+    params.permit(:ticker)
+  end
+
+   def render_unprocessable_entity_response(exception)
+        render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
+    end
+
 end

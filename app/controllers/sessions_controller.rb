@@ -9,10 +9,11 @@ class SessionsController < ApplicationController
         if user
           session[:user_id] = user.id
           render json: {
-            status: :created,
-            logged_in: true,
-            user: user
-          }
+              logged_in: true,
+              user: user.as_json(:only => [:email, :id]),
+              stocks: user.stocks.as_json(:only => [:id, :ticker])
+            }, 
+            status: :created
         else
           render json:  {error: "Invalid Email or Password"}, status: :not_found
         end
@@ -22,7 +23,8 @@ class SessionsController < ApplicationController
         if @current_user 
             render json: {
                 logged_in: true, 
-                user: @current_user
+                user: @current_user.as_json(:only => [:id, :email]),
+                stocks: @current_user.stocks.as_json(:only => [:id, :ticker])
             }
         else
             render json: {
@@ -35,4 +37,8 @@ class SessionsController < ApplicationController
         reset_session 
         render json: {status: 200, logged_out: true} 
     end
+
+    private 
+
+    
 end
