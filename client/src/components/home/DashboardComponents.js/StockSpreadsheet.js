@@ -3,12 +3,12 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 
 const StockSpreadsheet = ({stocks, handleClick}) => {
-    
-    
 
+    
+ if (stocks) {
 
-    return (
-        <div>
+     return (
+         <div>
             <h1>Chart!</h1>
             <Container>
 
@@ -23,23 +23,31 @@ const StockSpreadsheet = ({stocks, handleClick}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {stocks.map(stock => {
+                    { stocks.map (stock => {
                         return (
-                        <tr key={stock.symbol}>
+                            <tr key={stock.symbol}>
                             <th scope="row">{stock.symbol}</th>
                             <td>{stock.company_name}</td>
                             <td>{stock.sector}</td>
                             <td>{stock.latest_price}</td>
-                            <Button variant="outline-primary" value={stock.symbol} onClick={(e) => handleClick(e)}>View</Button>
+                            <td>
+                                <Button 
+                                    variant="outline-primary" 
+                                    value={stock.symbol} 
+                                    onClick={(e) => handleClick(e)}>View</Button>
+                            </td>
                         </tr>
                             )
-                    })}
+                        })}
                    
                 </tbody>
             </table>
             </Container>
         </div>
     )
+} else {
+    return (<div>Loading...</div>)
+}
 }
 
 export default StockSpreadsheet

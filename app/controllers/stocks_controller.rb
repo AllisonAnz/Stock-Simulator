@@ -21,16 +21,25 @@ class StocksController < ApplicationController
   end
 
   def create
-    
     add_stock = @current_user.stocks.find_or_create_by!(stock_params)
     render json: add_stock
   end
+  
+  def update 
+  end
+
 
   private 
 
   def stock_params 
     params.permit(:ticker)
   end
+
+  def edit_stock_params
+    params.permit(:shares, :avg_cost,) 
+  end
+
+ 
 
    def render_unprocessable_entity_response(exception)
         render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity

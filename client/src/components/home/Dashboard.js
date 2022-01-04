@@ -7,7 +7,7 @@ import StockSpreadsheet from './DashboardComponents.js/StockSpreadsheet';
 const Dashboard = ({stocks, loggedIn}) => {
     const [loading, setLoading] = useState(true)
     const [errors, setErrors] = useState(false)
-    const [stockData, setStockData] = useState({})
+    const [stockData, setStockData] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -19,12 +19,24 @@ const Dashboard = ({stocks, loggedIn}) => {
         
         axios.get(`http://localhost:3000/stocks`, {withCredentials: true})
             .then((response) => {
-                setStockData(response.data);
-                setLoading(false)
+                
+                //setStockData(oldArr => [...oldArr, data])
+                //debugger
+                handleResponse(response.data)
+                
             })
             .catch((errors) => {
                 console.log(errors);
             });
+    }
+
+    const handleResponse = (data) => {
+        if (Array.isArray(data)){
+            setStockData(data)
+        } else {
+            setStockData([data])
+        }
+        setLoading(false)
     }
 
     const handleClick = (e) => {
@@ -52,9 +64,10 @@ const Dashboard = ({stocks, loggedIn}) => {
             <h1>Dashboard</h1>
             <br/>
             <div>
-                {stockData ? <StockSpreadsheet stocks={stockData} handleClick={handleClick}/> : ""
-                }
-            
+                 {
+                     stockData ? <StockSpreadsheet stocks={stockData} handleClick={handleClick} /> : ""
+                 }
+
             </div>
         </div>
     )

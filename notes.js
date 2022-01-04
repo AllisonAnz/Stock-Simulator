@@ -70,8 +70,13 @@ if (stockData) {
 </tr>
 
 //-----
- <Col sm>
-                        <div className="p-3 border bg-light">
-                            Custom column padding
-                        </div>
-                    </Col>
+// <Col sm>
+//    <div className="p-3 border bg-light">
+//        Custom column padding
+//    </div>
+// </Col>
+
+//-----
+{
+    stockData ? <StockSpreadsheet stocks={stockData} handleClick={handleClick} /> : ""
+}

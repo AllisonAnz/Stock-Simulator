@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
           render json: {
               logged_in: true,
               user: user.as_json(:only => [:email, :id]),
-              stocks: user.stocks.as_json(:only => [:id, :ticker])
+              stocks: user.stocks.as_json(except: [:created_at, :updated_at])
             }, 
             status: :created
         else
