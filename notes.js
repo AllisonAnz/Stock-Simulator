@@ -80,3 +80,5 @@ if (stockData) {
 {
     stockData ? <StockSpreadsheet stocks={stockData} handleClick={handleClick} /> : ""
 }
+
+<Button variant="outline-primary" value={stock.symbol} onClick={(e) => handleClick(e)}>View</Button>

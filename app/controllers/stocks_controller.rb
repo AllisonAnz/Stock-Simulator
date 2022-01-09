@@ -26,6 +26,19 @@ class StocksController < ApplicationController
   end
   
   def update 
+    stock = @current_user.stocks.find(params[:id])
+    #byebug
+    total_shares = Stock.update_shares(stock, params[:shares])
+    #total_shares = (stock.shares + params[:shares])
+    stock.shares = total_shares 
+    stock.avg_cost = ((stock.total_cost) + (params[:shares] * params[:avg_cost]))/stock.shares
+    #stock.total_cost = (stock.avg_cost) * (stock.shares)
+    stock.save!
+
+    
+    
+    #stock.update!(edit_stock_params)
+    render json: stock
   end
 
 
@@ -36,7 +49,7 @@ class StocksController < ApplicationController
   end
 
   def edit_stock_params
-    params.permit(:shares, :avg_cost,) 
+    params.permit(:shares, :avg_cost, :total_cost) 
   end
 
  
