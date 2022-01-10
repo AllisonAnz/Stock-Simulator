@@ -48,6 +48,17 @@ class StocksController < ApplicationController
     # render json: stock 
   end
 
+  def destroy 
+    stock = @current_user.stocks.find(params[:id])
+    if stock.shares === 0 
+      stock.destroy 
+      head :no_content
+    else 
+      # buybug
+      render json: {error: "sell stock first"}
+    end
+  end
+
 
   private 
 

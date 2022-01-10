@@ -106,3 +106,62 @@ if (stockData) {
 const toggleBuy = () => {
     setBuyActive(!isBuyActive)
 }
+
+
+return (
+    <>
+        <Button variant="danger" onClick={handleShow}>
+            Delete Stock
+        </Button>
+
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>You Don't own shares</Modal.Title>
+            </Modal.Header>
+            <Form onSubmit={handleSubmit}>
+                <Modal.Body>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button type="submit" variant="primary" >
+                        Yes
+                    </Button>
+                </Modal.Footer>
+            </Form>
+        </Modal>
+    </>
+)
+    } else {
+    return (
+        <>
+            <Button variant="danger" onClick={handleShow}>
+                Delete Stock
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>You Own Shares</Modal.Title>
+                </Modal.Header>
+                <Form onSubmit={handleSubmit}>
+                    <Modal.Body>
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button type="submit" variant="primary" >
+                            Yes
+                        </Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal>
+        </>
+    )
+}
+    
+    
+}

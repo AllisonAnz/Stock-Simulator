@@ -1,6 +1,8 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
+import Table from 'react-bootstrap/Table'
+import './Dashboard.css'
 
 const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
 
@@ -9,31 +11,32 @@ const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
 
      return (
          <div>
-            <h1>Chart!</h1>
-            <Container>
+            <Container className="container">
+            <h1 className="title">Watchlist</h1>
 
-            <table className="table table-striped">
+            <Table className="table table-striped">
+                
                 <thead>
-                    <tr>
+                    <tr className="table-header">
                         <th scope="col">Symbol</th>
                         <th scope="col">Company</th>
                         <th scope="col">Shares</th>
                         <th scope="col">Latest Price</th>
+                             <th scope="col"></th>
                         
                     </tr>
-                </thead>
+                </thead >
                 <tbody>
                     { stocks.map (stock => {
                         return (
-                            <tr key={stock.symbol}>
+                            <tr className="table-body" key={stock.symbol}>
                             <th scope="row">{stock.symbol}</th>
                             <td>{stock.company_name}</td>
                             <td>
-                                { userStocks.forEach(userStock => {
+                                { userStocks.map(userStock => {
                                     if (userStock.ticker === stock.symbol && userStock.shares > 0){
                                        return (userStock.shares)
-                                    }
-                                    
+                                    } return ("")
                                 })
                                 }
                             </td>
@@ -49,7 +52,7 @@ const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
                         })}
                    
                 </tbody>
-            </table>
+            </Table>
             </Container>
         </div>
     )

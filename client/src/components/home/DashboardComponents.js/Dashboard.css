@@ -1,0 +1,31 @@
+ .table-header {
+    background-color: #a2dce0;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 30px;
+  }
+
+.table-body {
+     background-color:rgba(202, 228, 228, 0.251);
+      letter-spacing: 0.03em;
+}
+
+.table {
+     border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+.container {
+     margin: auto;
+  width: 50%;
+  border: 3px solid #a2dce0;
+  padding: 10px;
+  background-color: rgba(169, 224, 224, 0.17);
+}
+
+.title {
+     text-transform: uppercase;
+      font-size: 30px;
+      font-family: Arial, Helvetica, sans-serif;
+}

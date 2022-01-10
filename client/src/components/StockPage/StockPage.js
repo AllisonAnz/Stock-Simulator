@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Spinner from 'react-bootstrap/Spinner'
 import BuyButton from './BuyButton'
 import SellButton from './SellButton'
+import RemoveButton from './RemoveButton'
 import Chart from '../charts/Chart.js'
 import axios from 'axios'
 import { Container, Row, Col} from 'react-bootstrap'
@@ -172,8 +173,13 @@ const StockPage = () => {
                             </dl> 
                         </div>
                     </Col>
-                </Row>
+                </Row><br/>
+                <div align="right">
+
+                   <RemoveButton shares={userStock.shares} stock_id={userStock.id}/>
+                </div>
             </Container>
+           
            
         </div>
     )
