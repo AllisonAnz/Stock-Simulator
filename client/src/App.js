@@ -9,7 +9,7 @@ import Home from './components/home/Home';
 import Dashboard from './components/home/Dashboard';
 import StockPage from './components/StockPage/StockPage';
 import StockSpreadsheet from './components/home/DashboardComponents.js/StockSpreadsheet';
-
+import Chart from './components/charts/Chart';
 import NavigationBar from './components/nav/Navbar';
 import './App.css';
 
@@ -71,7 +71,7 @@ const App = () => {
         <Route path="/search" element= {<StockSearch />} />
         <Route path="/stock/:id" element={<StockPage user={user.user} />} />
         <Route path="/spreadsheet" element={<StockSpreadsheet />} />
-       
+         <Route path="/chart" element={<Chart />} />
       </Routes>
      
     </div>

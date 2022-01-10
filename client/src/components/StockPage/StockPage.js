@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Spinner from 'react-bootstrap/Spinner'
 import BuyButton from './BuyButton'
 import SellButton from './SellButton'
+import Chart from '../charts/Chart.js'
 import axios from 'axios'
 import { Container, Row, Col} from 'react-bootstrap'
 
@@ -34,11 +35,6 @@ const StockPage = () => {
         }
 
 
-    const handleSellClick = () => {
-        console.log("clicked")
-    }
-
-
     if (loading) return (
         <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -57,7 +53,7 @@ const StockPage = () => {
             <Container>
                 <Row>
                     <Col className="p-3 border bg-light"sm={8}>
-                        <h1>Chart</h1>
+                        {<Chart symbol={userStock.ticker}/>}
 
                     </Col>
                     <Col sm={4}>

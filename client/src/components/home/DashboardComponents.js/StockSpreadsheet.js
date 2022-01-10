@@ -28,7 +28,15 @@ const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
                             <tr key={stock.symbol}>
                             <th scope="row">{stock.symbol}</th>
                             <td>{stock.company_name}</td>
-                            <td></td>
+                            <td>
+                                { userStocks.forEach(userStock => {
+                                    if (userStock.ticker === stock.symbol && userStock.shares > 0){
+                                       return (userStock.shares)
+                                    }
+                                    
+                                })
+                                }
+                            </td>
                             <td>{stock.latest_price}</td>
                             <td>
                                 <Button 
