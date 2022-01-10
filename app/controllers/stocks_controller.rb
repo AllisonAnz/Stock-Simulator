@@ -25,20 +25,27 @@ class StocksController < ApplicationController
     render json: add_stock
   end
   
+  # send the stock and params to stock.rb model 
+  # model handles calculations before saving to database 
+  # before update, total_cost is calculated
   def update 
     stock = @current_user.stocks.find(params[:id])
-    #byebug
-    total_shares = Stock.update_shares(stock, params[:shares])
-    #total_shares = (stock.shares + params[:shares])
-    stock.shares = total_shares 
-    stock.avg_cost = ((stock.total_cost) + (params[:shares] * params[:avg_cost]))/stock.shares
-    #stock.total_cost = (stock.avg_cost) * (stock.shares)
-    stock.save!
+    
+    if params[:option] == "buy"
+       Stock.buy_stock(stock, params)
+      stock.save!
+      render json: stock
+    elsif params[:option] == "sell"
+      Stock.sell_stock(stock, params)
+      stock.save! 
+      render json: stock
+    else
+      render json: {error: "invalid"}
+    end
 
-    
-    
+    # use code below to reset stock
     #stock.update!(edit_stock_params)
-    render json: stock
+    # render json: stock 
   end
 
 

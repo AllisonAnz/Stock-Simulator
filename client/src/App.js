@@ -17,7 +17,7 @@ const App = () => {
   const [user, setUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [stuff, setStuff] = useState({})
+ 
 
 
   const handleLogin = (data) => {
@@ -50,10 +50,6 @@ const App = () => {
     setUser({})
   }
 
-  const handleStuff = (data) => {
-    setStuff(data)
-  }
- 
 
  useEffect(() => {
     setLoading(true)

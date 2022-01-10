@@ -82,3 +82,27 @@ if (stockData) {
 }
 
 <Button variant="outline-primary" value={stock.symbol} onClick={(e) => handleClick(e)}>View</Button>
+
+
+//                    <dl className="row">
+//                                <dt className="col-sm-5">
+//                                    <Button variant="success" 
+//                                            onClick = {toggleBuy}
+//                                    >Buy</Button>
+//                                  
+//
+//                                </dt>
+//                                <dd className="col-sm-6">
+//                                    <button type="button" onClick={handleSellClick} className="btn btn-warning">Sell</button>
+//                                </dd>
+//                            </dl> 
+//                        </div >
+//                    </Col >
+//                </Row >
+//            </Container >
+//    <div className={isBuyActive ? < BuyButton /> : null}></div>
+//        </div >
+
+const toggleBuy = () => {
+    setBuyActive(!isBuyActive)
+}

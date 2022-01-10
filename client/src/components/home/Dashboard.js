@@ -6,7 +6,6 @@ import StockSpreadsheet from './DashboardComponents.js/StockSpreadsheet';
 
 const Dashboard = ({stocks, loggedIn}) => {
     const [loading, setLoading] = useState(true)
-    const [errors, setErrors] = useState(false)
     const [stockData, setStockData] = useState([])
     const navigate = useNavigate()
 
@@ -40,12 +39,13 @@ const Dashboard = ({stocks, loggedIn}) => {
     }
 
     const handleClick = (e) => {
-        console.log(e.target.value)
+        //console.log(e.target.value)
         
-       const data = stocks.map(stock => {
+       stocks.map(stock => {
            if(stock.ticker === e.target.value){
                navigate(`/stock/${stock.ticker}`)
         }
+        return (e.target.value)
     })
        //{ <StockPage stock={data}/> }           
     }
@@ -65,7 +65,7 @@ const Dashboard = ({stocks, loggedIn}) => {
             <br/>
             <div>
                  {
-                     stockData ? <StockSpreadsheet stocks={stockData} handleClick={handleClick} /> : ""
+                     stockData ? <StockSpreadsheet stocks={stockData} handleClick={handleClick} userStocks={stocks}/> : ""
                  }
 
             </div>

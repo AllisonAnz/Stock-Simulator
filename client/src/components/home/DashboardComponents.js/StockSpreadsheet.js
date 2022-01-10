@@ -2,7 +2,7 @@ import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 
-const StockSpreadsheet = ({stocks, handleClick}) => {
+const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
 
     
  if (stocks) {
@@ -17,7 +17,7 @@ const StockSpreadsheet = ({stocks, handleClick}) => {
                     <tr>
                         <th scope="col">Symbol</th>
                         <th scope="col">Company</th>
-                        <th scope="col">Sector</th>
+                        <th scope="col">Shares</th>
                         <th scope="col">Latest Price</th>
                         
                     </tr>
@@ -28,7 +28,7 @@ const StockSpreadsheet = ({stocks, handleClick}) => {
                             <tr key={stock.symbol}>
                             <th scope="row">{stock.symbol}</th>
                             <td>{stock.company_name}</td>
-                            <td>{stock.sector}</td>
+                            <td></td>
                             <td>{stock.latest_price}</td>
                             <td>
                                 <Button 
