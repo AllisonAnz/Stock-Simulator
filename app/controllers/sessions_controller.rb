@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
           session[:user_id] = user.id
           render json: {
               logged_in: true,
-              user: user.as_json(:only => [:email, :id]),
+              #user: user.as_json(:only => [:email, :id,], :include => [:stocks]), <=use this in refractor?
+              user: user.as_json(:only => [:email, :id,]),
               stocks: user.stocks.as_json(except: [:created_at, :updated_at])
             }, 
             status: :created
@@ -24,7 +25,7 @@ class SessionsController < ApplicationController
             render json: {
                 logged_in: true, 
                 user: @current_user.as_json(:only => [:id, :email]),
-                stocks: @current_user.stocks.as_json(:only => [:id, :ticker, :shares])
+                stocks: @current_user.stocks.as_json(:only => [:id, :ticker, :shares, :transactions])
             }
         else
             render json: {

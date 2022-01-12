@@ -21,7 +21,7 @@ const BuyButton = ({price, stock_id}) => {
         {
             shares: shares,
             avg_cost: price,
-            option: "buy"
+            option: "Purchased"
         },
 
         { withCredentials: true })

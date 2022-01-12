@@ -4,6 +4,7 @@ import BuyButton from './BuyButton'
 import SellButton from './SellButton'
 import RemoveButton from './RemoveButton'
 import Chart from '../charts/Chart.js'
+import Transactions from './Transactions'
 import axios from 'axios'
 import { Container, Row, Col} from 'react-bootstrap'
 
@@ -14,6 +15,7 @@ const StockPage = () => {
     const [loading, setLoading] = useState(true)
     const [userStock, setUserStock] = useState({})
     const [stockQuote, setStockQuote] = useState({})
+    const [transactions, setTransactions] = useState([])
     const params = useParams()
 
     
@@ -27,6 +29,7 @@ const StockPage = () => {
             .then(response => {
                 setUserStock(response.data.stock)
                 setStockQuote(response.data.stock_quote)
+                setTransactions(response.data.transactions)
                 setLoading(false)
                 return response.data
             })
@@ -178,6 +181,9 @@ const StockPage = () => {
 
                    <RemoveButton shares={userStock.shares} stock_id={userStock.id}/>
                 </div>
+            </Container><br/>
+            <Container>
+               < Transactions transactions={transactions}/>
             </Container>
            
            

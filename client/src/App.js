@@ -68,7 +68,7 @@ const App = () => {
       <Routes>
         <Route index path="/" element={ <Home user={user} loggedIn={loggedIn} handleLogin={handleLogin} /> } />
         <Route path="/dashboard" element={<Dashboard user={user.user} stocks={user.stocks} loggedIn={loggedIn}/>} />
-        <Route path="/search" element= {<StockSearch />} />
+        <Route path="/search" element= {<StockSearch loggedIn={loggedIn} />} />
         <Route path="/stock/:id" element={<StockPage user={user.user} />} />
         <Route path="/spreadsheet" element={<StockSpreadsheet />} />
          <Route path="/chart" element={<Chart />} />

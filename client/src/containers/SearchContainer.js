@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import SearchForm from '../components/forms/SearchForm'
 import StockDetails from './searchContainerComponents/StockDetails'
 
-const StockSearch = () => {
+const StockSearch = ({loggedIn}) => {
     const [results, setResults] = useState({})
     const [clicked, setClick] = useState(false)
     const handleSearchResults = (results) => {
@@ -14,10 +14,10 @@ const StockSearch = () => {
         setClick(true)
     }
     return (
-        <div>
-            <h1>Stock Container</h1>
+        <div><br/>
+            <h1></h1>
             <SearchForm handleSearchResults={handleSearchResults} handleSearchClick={handleSearchClick}/><br/>
-            {clicked ? (<StockDetails results={results} />) : ("")}
+            {clicked ? (<StockDetails results={results} loggedIn={loggedIn} />) : ("")}
         </div>
     )
 }

@@ -32,7 +32,7 @@ const SellButton = ({ price, stock_id, total_shares }) => {
             {
                 shares: shares,
                 avg_cost: price,
-                option: "sell"
+                option: "Sold"
             },
 
             { withCredentials: true })

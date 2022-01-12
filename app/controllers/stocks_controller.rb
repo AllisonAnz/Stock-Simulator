@@ -1,24 +1,38 @@
 class StocksController < ApplicationController
     include CurrentUserConcern
+    include Functions
    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def index
-   stocks = @current_user.stocks.all
-   tickers = stocks.map{|x| x[:ticker]}
-   stock_quote = Stock.get_stock(tickers).to_json
-   render json: stock_quote
+    if @current_user 
+      stocks = @current_user.stocks.all
+      tickers = stocks.map{|x| x[:ticker]}
+      stock_quote = Functions::APIRequests.get_stock(tickers).to_json
+      render json: stock_quote
+     
+    else
+       #if params[:ticker]
+        @stock= Functions::APIRequests.get_stock(params[:ticker]).to_json
+        render json: @stock
+    end
   end
 
   def show 
     #byebug
     url_params = params[:id]
     @stock = @current_user.stocks.find{|stock| stock.ticker === url_params  }
-    stock_quote = Stock.get_stock(url_params)
+   
+    stock_quote = Functions::APIRequests.get_stock(url_params)
     render json: {
-            stock: @stock,
+            stock: @stock.as_json(except: [:created_at, :updated_at]),
+           transactions: @stock.transactions.all.as_json(except: [:created_at, :updated_at]),
             stock_quote: stock_quote
-          }
+    } 
   end
+  # refractor? maybe?
+  # stock: @stock.as_json(include: [transactions: {
+  #                                            except: [:created_at, :updated_at]
+  #                                                }], except: [:created_at, :updated_at]),
 
   def create
     add_stock = @current_user.stocks.find_or_create_by!(stock_params)
@@ -30,13 +44,15 @@ class StocksController < ApplicationController
   # before update, total_cost is calculated
   def update 
     stock = @current_user.stocks.find(params[:id])
-    
-    if params[:option] == "buy"
-       Stock.buy_stock(stock, params)
+    #byebug
+    if params[:option] === "Purchased"
+      Functions::StockCalcs.buy_stock(stock, params)
+      TransactionsController.new_transaction(stock,params)
+               
       stock.save!
       render json: stock
-    elsif params[:option] == "sell"
-      Stock.sell_stock(stock, params)
+    elsif params[:option] === "Sold"
+      Functions::StockCalcs.sell_stock(stock, params)
       stock.save! 
       render json: stock
     else
@@ -57,6 +73,12 @@ class StocksController < ApplicationController
       # buybug
       render json: {error: "sell stock first"}
     end
+  end
+
+  def find_chart 
+    #byebug
+   stock = Functions::APIRequests.request_chart(params)
+   render json: stock 
   end
 
 
