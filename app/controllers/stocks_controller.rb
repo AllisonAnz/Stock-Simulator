@@ -53,6 +53,7 @@ class StocksController < ApplicationController
       render json: stock
     elsif params[:option] === "Sold"
       Functions::StockCalcs.sell_stock(stock, params)
+      TransactionsController.new_transaction(stock,params)
       stock.save! 
       render json: stock
     else
@@ -67,7 +68,7 @@ class StocksController < ApplicationController
   def destroy 
     stock = @current_user.stocks.find(params[:id])
     if stock.shares === 0 
-      stock.destroy 
+      stock.delete
       head :no_content
     else 
       # buybug

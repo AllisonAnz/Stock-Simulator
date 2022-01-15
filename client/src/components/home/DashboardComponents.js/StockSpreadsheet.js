@@ -1,13 +1,12 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import Table from 'react-bootstrap/Table'
+import {Container, Button, Table, Nav} from 'react-bootstrap'
+
 import './Dashboard.css'
 
 const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
 
     
- if (stocks) {
+ if (stocks.length > 0) {
 
      return (
          <div>
@@ -57,7 +56,11 @@ const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
         </div>
     )
 } else {
-    return (<div>Loading...</div>)
+    return (<Container>
+        <h1 className="title">Watchlist</h1>
+        <h3>You do not have any stocks on your Watchlist</h3>
+        <Nav.Link variant="pills" href="/search"> Search For Stocks</Nav.Link>
+    </Container>)
 }
 }
 

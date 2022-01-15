@@ -2,7 +2,7 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 
 const Transactions = ({transactions}) => {
-    
+    if (transactions.length > 0) {
     return (
         <>
             <h1 className="title">Purchase History</h1>
@@ -10,6 +10,7 @@ const Transactions = ({transactions}) => {
                 <thead>
                     <tr className="table-header">
                         <th scope="col">Date</th>
+                        <th scope="col">Symbol</th>
                         <th scope="col">Option</th>
                         <th scope="col">Shares</th>
                         <th scope="col">Price Per Share</th>
@@ -23,6 +24,7 @@ const Transactions = ({transactions}) => {
                 return (
                     <tr className="table-body" key={transaction.id}>
                         <td> {transaction.date} </td>
+                        <td>{transaction.ticker}</td>
                         <td> {transaction.option} </td>
                         <td> {transaction.shares} </td>
                         <td> ${transaction.per_stock} </td>
@@ -35,6 +37,9 @@ const Transactions = ({transactions}) => {
         </Table>
         </>
     )
+        } else {
+            return ("")
+        }
 }
 
 export default Transactions

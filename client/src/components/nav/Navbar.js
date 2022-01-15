@@ -40,7 +40,7 @@ const NavigationBar = ({loggedIn, onLogout}) => {
                                
                                 <Nav.Link href="/search">Search For Stocks</Nav.Link>
                                 <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                                    <NavDropdown.Item href="/account-history">Account History</NavDropdown.Item>
                                     <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="#action5">

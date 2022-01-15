@@ -18,7 +18,7 @@ const Dashboard = ({stocks, loggedIn}) => {
         
         axios.get(`http://localhost:3000/stocks`, {withCredentials: true})
             .then((response) => {
-                
+
                 //setStockData(oldArr => [...oldArr, data])
                 //debugger
                 handleResponse(response.data)
@@ -26,6 +26,7 @@ const Dashboard = ({stocks, loggedIn}) => {
             })
             .catch((errors) => {
                 console.log(errors);
+                setLoading(false)
             });
     }
 

@@ -1,9 +1,18 @@
 class TransactionsController < ApplicationController
+     include CurrentUserConcern
+
+    def index 
+        if @current_user 
+            transactions = @current_user.transactions 
+            render json: transactions 
+        end
+    end
 
     def self.new_transaction(stock, params)
          total = (params[:shares] * params[:avg_cost])
             add_transaction = Transaction.new(
                 stock_id: stock.id,
+                user_id: stock.user_id,
                 date: Date.today,
                 ticker: stock.ticker,
                 shares: params[:shares],
