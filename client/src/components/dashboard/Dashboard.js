@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router';
+import { Nav } from 'react-bootstrap'
 import axios from 'axios';
-import Spinner from 'react-bootstrap/Spinner'
-import StockSpreadsheet from './DashboardComponents.js/StockSpreadsheet';
+
+import LoadingPage from '../pages/Shared/LoadingPage';
+import Watchlist from './DashboardComponents/Watchlist';
 
 const Dashboard = ({stocks, loggedIn}) => {
     const [loading, setLoading] = useState(true)
@@ -18,12 +20,9 @@ const Dashboard = ({stocks, loggedIn}) => {
         
         axios.get(`http://localhost:3000/stocks`, {withCredentials: true})
             .then((response) => {
-
-                //setStockData(oldArr => [...oldArr, data])
-                //debugger
-                handleResponse(response.data)
-                
+                handleResponse(response.data)  
             })
+
             .catch((errors) => {
                 console.log(errors);
                 setLoading(false)
@@ -40,42 +39,27 @@ const Dashboard = ({stocks, loggedIn}) => {
     }
 
     const handleClick = (e) => {
-        //console.log(e.target.value)
-        
        stocks.map(stock => {
            if(stock.ticker === e.target.value){
                navigate(`/stock/${stock.ticker}`)
         }
         return (e.target.value)
-    })
-       //{ <StockPage stock={data}/> }           
+     })      
     }
 
-
-    if (loading) return (
-        <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-        </Spinner>)
-
- if (stockData) {
+    if (loading) return (<LoadingPage />)
+    if (!loggedIn) return (<Nav.Link variant="pills" href="/"> Login to view this page</Nav.Link>) 
 
      return (
-         
-         <div>
-            <h1>Dashboard</h1>
-            <br/>
-            <div>
+         <div><br/>
+            <div><br/>
                  {
-                     stockData ? <StockSpreadsheet stocks={stockData} handleClick={handleClick} userStocks={stocks}/> : ""
+                     stockData ? <Watchlist stocks={stockData} handleClick={handleClick} userStocks={stocks}/> : ""
                  }
 
             </div>
         </div>
     )
-    } else {
-        return(<div>Sign Up to View This Page</div>)}
-    
-    
 }
 
 export default Dashboard

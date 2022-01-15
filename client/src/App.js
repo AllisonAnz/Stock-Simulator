@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Spinner from 'react-bootstrap/Spinner'
+
+
 import axios from 'axios';
 
-//import SearchForm from './components/forms/SearchForm';
-import StockSearch from './containers/SearchContainer';
+import LoadingPage from './components/pages/Shared/LoadingPage';
+import StockSearch from './components/pages/Search/SearchPage';
 import Home from './components/home/Home';
-import Dashboard from './components/home/Dashboard';
-import StockPage from './components/StockPage/StockPage';
-import StockSpreadsheet from './components/home/DashboardComponents.js/StockSpreadsheet';
-import Chart from './components/charts/Chart';
-import AccountTransactions from './components/StockPage/AccountTransactions';
+import Dashboard from './components/dashboard/Dashboard';
+import StockPage from './components/pages/StockPage/StockPage';
+
+import AccountTransactions from './components/pages/Transactions/AccountTransactions';
 import NavigationBar from './components/nav/Navbar';
 import './App.css';
 
@@ -19,8 +19,6 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [loading, setLoading] = useState(true)
  
-
-
   const handleLogin = (data) => {
     setUser(data)
     setLoggedIn(true)
@@ -51,17 +49,12 @@ const App = () => {
     setUser({})
   }
 
-
  useEffect(() => {
     setLoading(true)
     checkLoginStatus()
   }, [])
 
-  if (loading) return (
-      <Spinner animation="border" role="status">
-         <span className="visually-hidden">Loading...</span>
-      </Spinner>)
-
+  if (loading) return (<LoadingPage />)
 
   return (
     <div className="App">
@@ -71,11 +64,8 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard user={user.user} stocks={user.stocks} loggedIn={loggedIn}/>} />
         <Route path="/search" element= {<StockSearch loggedIn={loggedIn} />} />
         <Route path="/stock/:id" element={<StockPage user={user.user} />} />
-        <Route path="/spreadsheet" element={<StockSpreadsheet />} />
-         <Route path="/chart" element={<Chart />} />
         <Route path="/account-history" element={<AccountTransactions />} />
       </Routes>
-     
     </div>
   );
 }

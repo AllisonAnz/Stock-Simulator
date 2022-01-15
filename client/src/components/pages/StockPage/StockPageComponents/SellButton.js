@@ -15,15 +15,13 @@ const SellButton = ({ price, stock_id, total_shares }) => {
         e.preventDefault()
         
         const checkAmount = () => {
-
             (total_shares - shares < 0) ? (
                 setError(true)
                 ) : (sellStock())
                 
                 return total_shares
             }
-            checkAmount()
-       //sellStock()
+                checkAmount()
     }
 
     const sellStock = () => {
@@ -43,6 +41,7 @@ const SellButton = ({ price, stock_id, total_shares }) => {
                 console.log(errors);
             })
     }
+    
     return (
         <>
             <Button variant="warning" onClick={handleShow}>

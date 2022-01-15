@@ -42,7 +42,7 @@ export default class Registration extends Component {
                 }
             })
             .catch(error => {
-                //debugger
+               
                 console.log("registration error", error);
                 this.setState({ errors: error.response.data.error })
             });
@@ -51,19 +51,7 @@ export default class Registration extends Component {
 
 render(){
     return (
-        <div className="container">
-            <br />
-            <div className="row">
-                <div className="col-md-4">
-                    <div className="homepage-description">
-                        <img className="center" alt="Bootstrap Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlPZuEWez1EkmTNEmokPJuGQ7S7r165Pl_6Q&usqp=CAU" /><br />
-                        <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-
-                    </div>
-                </div>
-                <div className="col-md-8">
-                    <br />
+       
                     <div className="login-container">
                         <div className="container-sm">
                             <form onSubmit={this.handleSubmit}>
@@ -84,7 +72,7 @@ render(){
                                     <label>Password: </label>
                                     <br />
                                     <input
-                                        type="password"
+                                        type="current-password"
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.handleChange}
@@ -116,9 +104,7 @@ render(){
                         </div>
                         
                     </div>
-                </div>
-            </div>
-        </div>
+              
 
         )
     }

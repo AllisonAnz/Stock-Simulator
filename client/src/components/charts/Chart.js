@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Plot from 'react-plotly.js';
-import Spinner from 'react-bootstrap/Spinner'
+import LoadingPage from '../pages/Shared/LoadingPage';
 
 const Chart = ({symbol}) => {
    
@@ -34,15 +34,10 @@ const Chart = ({symbol}) => {
             })
             .catch(errors => {
                 console.log(errors);
-            });
-        //debugger
+            }); 
     }
 
-    if (loading) return (
-        <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-        </Spinner>)
-
+    if (loading) return (<LoadingPage />)
     
     return (
         <>

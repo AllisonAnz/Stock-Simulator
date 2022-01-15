@@ -1,0 +1,7 @@
+.center {
+border: 5px solid #74ac79;
+display: flex;
+justify-content: center;
+
+padding: 50px 0;
+}

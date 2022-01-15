@@ -1,56 +1,14 @@
-import axios from 'axios'
-import React, {useState} from 'react'
-import Chart from '../../components/charts/Chart'
+import React from 'react'
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap'
-import { useNavigate } from 'react-router';
+import Chart from '../../charts/Chart.js'
 
-
-const StockDetails = ({results, loggedIn}) => {
-    const [clicked, setClick] = useState(false)
-    const navigate = useNavigate()
-    
+const Details = ({stock}) => {
     const { company_name, symbol, latest_price, change, previous_close, latest_source,
         open, high, low, week52_high, week52_low, volume, pe_ratio, market_cap,
-        avg_total_volume, ytd_change } = results
-    const isLoggedIn = loggedIn
-
-    const handleClick = () => {
-        //console.log(results.symbol)
-        addStock()
-       
-    }
-
-    const addStock = () => {
-        //const { ticker } = results.symbol;
-        axios.post("http://localhost:3000/stocks",
-                {ticker: results.symbol},
-                { withCredentials: true }
-            )
-            .then(response => {
-                if (response) {
-                    setClick(true)
-                }
-            })
-            .catch(error => {
-                //debugger
-                console.log("error", error);
-            });
-    }
-
-    
-    
+        avg_total_volume, ytd_change } = stock
     return (
-        <>
-        <div>
-                <h1>{company_name}</h1>
-
-                {clicked ? (
-                    <div><br/>
-                        <h3 style={{ color: "green" }}>Stock Added To Watchlist!</h3>
-                        <Nav.Link variant="pills" href="/dashboard"> Go To Dashboard</Nav.Link>
-                    </div>) : ("")}
-                <br />
-                <Container>
+          <>
+                    <h1>{company_name}</h1><br/>
                     <Row>
                         <Col className="p-3 border bg-light" sm={8}>
                             {<Chart symbol={symbol} />}
@@ -139,14 +97,10 @@ const StockDetails = ({results, loggedIn}) => {
                                 </dl>
                             </div>
                         </Col>
+                        
                         </Row>
-                        </Container><br/>
-                {isLoggedIn ? (<Button variant="info" onClick={handleClick}>Add</Button>): ("")}
-               
-
-        </div>
-        </>
+                        </>
     )
 }
 
-export default StockDetails
+export default Details

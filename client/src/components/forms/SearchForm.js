@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Container } from 'react-bootstrap'
 
 const SearchForm = ({ handleSearchResults, handleSearchClick }) => {
     const [ticker, setTicker] = useState("")
@@ -28,7 +28,9 @@ const SearchForm = ({ handleSearchResults, handleSearchClick }) => {
 
     return (
        <>
-        <h1>Search for Stock Symbol!</h1><br/>
+       <Container>
+
+        <h1>Search for Stock by Symbol!</h1><br/>
             <Form onSubmit={handleSubmit}>
                 <input type="text" value={ticker} onChange={(e) => setTicker(e.target.value)}></input>
                 <Button type="submit" variant="info">submit</Button>
@@ -38,11 +40,12 @@ const SearchForm = ({ handleSearchResults, handleSearchClick }) => {
             { errors ? (<div>Stock does not exisit</div>) : ("")}
                 {results ? (
                     <button type="button" className="btn btn-link" onClick={handleSearchClick}>
-                        {results.company_name} ${results.latest_price} <br/>
+                        {results.company_name} Latest Price: ${results.latest_price} <br/>
                     </button> ) 
                     
                     : ("")}
             </div>
+        </Container>
        </>
    )
 }

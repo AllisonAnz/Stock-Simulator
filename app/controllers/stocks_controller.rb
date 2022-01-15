@@ -21,12 +21,13 @@ class StocksController < ApplicationController
     #byebug
     url_params = params[:id]
     @stock = @current_user.stocks.find{|stock| stock.ticker === url_params  }
-   
+    company_info = Functions::APIRequests.get_company_info(url_params)
     stock_quote = Functions::APIRequests.get_stock(url_params)
     render json: {
             stock: @stock.as_json(except: [:created_at, :updated_at]),
-           transactions: @stock.transactions.all.as_json(except: [:created_at, :updated_at]),
-            stock_quote: stock_quote
+            stock_quote: stock_quote,
+            company_info: company_info,
+            transactions: @stock.transactions.as_json(except: [:created_at, :updated_at])
     } 
   end
   # refractor? maybe?

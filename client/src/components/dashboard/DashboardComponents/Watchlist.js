@@ -1,9 +1,9 @@
 import React from 'react'
 import {Container, Button, Table, Nav} from 'react-bootstrap'
 
-import './Dashboard.css'
+import '../style/Dashboard.css'
 
-const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
+const Watchlist = ({stocks, handleClick, userStocks}) => {
 
     
  if (stocks.length > 0) {
@@ -21,8 +21,7 @@ const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
                         <th scope="col">Company</th>
                         <th scope="col">Shares</th>
                         <th scope="col">Latest Price</th>
-                             <th scope="col"></th>
-                        
+                        <th scope="col"></th>
                     </tr>
                 </thead >
                 <tbody>
@@ -56,12 +55,12 @@ const StockSpreadsheet = ({stocks, handleClick, userStocks}) => {
         </div>
     )
 } else {
-    return (<Container>
+    return (
+    <Container>
         <h1 className="title">Watchlist</h1>
         <h3>You do not have any stocks on your Watchlist</h3>
         <Nav.Link variant="pills" href="/search"> Search For Stocks</Nav.Link>
     </Container>)
-}
-}
+}}
 
-export default StockSpreadsheet
+export default Watchlist

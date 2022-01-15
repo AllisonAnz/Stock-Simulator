@@ -27,6 +27,11 @@ module Functions
              stock = StockQuote::Stock.quote(ticker)
         end
 
+        def self.get_company_info(ticker)
+            @api = StockQuote::Stock.new(api_key:  ENV['API_KEY'])
+            company =  StockQuote::Stock.company(ticker)
+        end
+
         def self.request_chart(params)
         #byebug
             response = RestClient.get 'https://www.alphavantage.co/query', { params: {

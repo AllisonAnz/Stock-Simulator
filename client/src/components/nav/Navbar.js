@@ -10,18 +10,19 @@ const NavigationBar = ({loggedIn, onLogout}) => {
             .delete("http://localhost:3000/logout", { withCredentials: true })
             .then(response => {
                 onLogout();
-                navigate('/')
+               
             })
             .catch(error => {
                 console.log("logout error", error);
             });
+        navigate('/')
     }
 
     return (
         <>
             <Navbar bg="light" expand={false}>
                 <Container fluid>
-                    <Navbar.Brand>Stocks</Navbar.Brand>
+                    <Navbar.Brand>Market Watch</Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
                         id="offcanvasNavbar"
@@ -29,25 +30,22 @@ const NavigationBar = ({loggedIn, onLogout}) => {
                         placement="end"
                     >
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
+                            <Offcanvas.Title id="offcanvasNavbarLabel">Navigation</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                {loggedIn ? (
-                                    <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                                ) 
-                                    : (<Nav.Link href="/">Home</Nav.Link>)}
+                                {loggedIn ? (<Nav.Link href="/dashboard">Dashboard</Nav.Link>) : (<Nav.Link href="/">Home</Nav.Link>)}
                                
                                 <Nav.Link href="/search">Search For Stocks</Nav.Link>
-                                <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-                                    <NavDropdown.Item href="/account-history">Account History</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action5">
-                                        Something else here
-                                    </NavDropdown.Item>
-                                </NavDropdown>
-                            </Nav>
+
+                                    {loggedIn ? (
+                                    <NavDropdown title="Account Options" id="offcanvasNavbarDropdown">
+                                        <NavDropdown.Item href="/account-history">Account History</NavDropdown.Item>
+                                        
+                                    </NavDropdown>): ("")}
+                                
+                            </Nav><br/>
+
                             {loggedIn? (
                                 <Button variant="outline-success" onClick={() => handleLogoutClick()}>Logout</Button>
                             ) : ("")}
