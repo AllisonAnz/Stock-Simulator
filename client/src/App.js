@@ -54,6 +54,7 @@ const App = () => {
     checkLoginStatus()
   }, [])
 
+  
   if (loading) return (<LoadingPage />)
 
   return (
@@ -65,6 +66,7 @@ const App = () => {
         <Route path="/search" element= {<StockSearch loggedIn={loggedIn} />} />
         <Route path="/stock/:id" element={<StockPage user={user.user} />} />
         <Route path="/account-history" element={<AccountTransactions />} />
+        {/* route /*  */}
       </Routes>
     </div>
   );

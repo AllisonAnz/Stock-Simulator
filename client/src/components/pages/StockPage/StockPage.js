@@ -66,10 +66,10 @@ const StockPage = () => {
 
                             <dl className="row">
                                 <dt className="col-sm-5">
-                                <BuyButton price={latest_price} stock_id={id} />
+                                <BuyButton price={latest_price} stock_id={id} searchStock={searchStock}/>
                                 </dt>
                                 <dd className="col-sm-6">
-                                    <SellButton price={latest_price} stock_id={id} total_shares={shares}/>  
+                                    <SellButton price={latest_price} stock_id={id} total_shares={shares} searchStock={searchStock}/>  
                                 </dd>
                             </dl> 
                         </div>

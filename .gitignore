@@ -40,5 +40,4 @@ yarn-debug.log*
 .yarn-integrity
 
 # ignore API key 
-# process.env.REACT_APP_API_KEY
 /.env

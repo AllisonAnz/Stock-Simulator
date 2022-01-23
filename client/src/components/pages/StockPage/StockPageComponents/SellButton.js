@@ -3,7 +3,7 @@ import axios from "axios";
 import { Modal, Form, Button } from 'react-bootstrap'
 
 
-const SellButton = ({ price, stock_id, total_shares }) => {
+const SellButton = ({ price, stock_id, total_shares, searchStock }) => {
     const [shares, setShares] = useState(0)
     const [show, setShow] = useState(false);
     const [error, setError] = useState(false)
@@ -25,7 +25,6 @@ const SellButton = ({ price, stock_id, total_shares }) => {
     }
 
     const sellStock = () => {
-        console.log("working")
         axios.patch(`http://localhost:3000/stocks/${stock_id}`,
             {
                 shares: shares,
@@ -35,7 +34,7 @@ const SellButton = ({ price, stock_id, total_shares }) => {
 
             { withCredentials: true })
             .then(() => {
-                window.location.reload()
+                searchStock()
             })
             .catch((errors) => {
                 console.log(errors);
@@ -52,7 +51,7 @@ const SellButton = ({ price, stock_id, total_shares }) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Sell Shares</Modal.Title>
                 </Modal.Header>
-                <Form onSubmit={handleSubmit}>
+                <Form className="sell" onSubmit={handleSubmit}>
                     <Modal.Body>
                         <Form.Group className="mb-3" >
                             <Form.Label>Sell Shares</Form.Label>
@@ -72,7 +71,7 @@ const SellButton = ({ price, stock_id, total_shares }) => {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button type="submit" variant="primary" >
+                        <Button type="submit" variant="primary" onClick={handleClose} >
                             Sell
                         </Button>
                     </Modal.Footer>

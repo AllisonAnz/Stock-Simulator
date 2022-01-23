@@ -9,22 +9,18 @@ const Chart = ({symbol}) => {
     const [stockChartXValues, setStockChartXValues] = useState()
     const [stockChartYValues, setStockChartYValues] = useState()
     const [loading, setLoading] = useState(true)
-
     
     useEffect(() => {
        //getChart()
     }, [])
-
     
     const getChart = () => {
-       
-        let API_Call = `http://localhost:3000/find_chart?ticker=${symbol}`
-        let stockChartXValuesFunction = [];
-        let stockChartYValuesFunction = [];
+        const API_Call = `http://localhost:3000/find_chart?ticker=${symbol}`
+        const stockChartXValuesFunction = [];
+        const stockChartYValuesFunction = [];
         axios.get(API_Call)
             .then((response) => {
-                //console.log(response.data['Time Series (Daily)'])
-                for (var key in response.data['Time Series (Daily)']) {
+                for (const key in response.data['Time Series (Daily)']) {
                     stockChartXValuesFunction.push(key);
                     stockChartYValuesFunction.push(response.data['Time Series (Daily)'][key]['1. open']);
                 }

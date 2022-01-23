@@ -40,8 +40,8 @@ class StocksController < ApplicationController
     render json: add_stock
   end
   
-  # send the stock and params to stock.rb model 
-  # model handles calculations before saving to database 
+  # send the stock and params to stock.rb module
+  # module handles calculations before saving to database 
   # before update, total_cost is calculated
   def update 
     stock = @current_user.stocks.find(params[:id])
@@ -61,9 +61,6 @@ class StocksController < ApplicationController
       render json: {error: "invalid"}
     end
 
-    # use code below to reset stock
-    #stock.update!(edit_stock_params)
-    # render json: stock 
   end
 
   def destroy 
@@ -72,7 +69,6 @@ class StocksController < ApplicationController
       stock.delete
       head :no_content
     else 
-      # buybug
       render json: {error: "sell stock first"}
     end
   end

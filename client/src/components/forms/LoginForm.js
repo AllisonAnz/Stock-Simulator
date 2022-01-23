@@ -51,12 +51,11 @@ export default class Registration extends Component {
 
 render(){
     return (
-       
                     <div className="login-container">
+                        
                         <div className="container-sm">
                             <form onSubmit={this.handleSubmit}>
                                 <h3>Log in</h3>
-
                                 <div className="form-group">
                                     <label>Email: </label>
                                     <br />
@@ -72,40 +71,27 @@ render(){
                                     <label>Password: </label>
                                     <br />
                                     <input
-                                        type="current-password"
+                                        type="password"
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.handleChange}
                                     />
+                                    {
+                                        this.state.errors.length > 0 && (
+                                            <ul style={{ color: "red" }}>
+                                                <ul>{this.state.errors}</ul>
+                                            </ul>
+                                        )
+                                    }
                                 </div><br />
-
-                                <div className="form-group">
-                                    <div className="custom-control custom-checkbox">
-                                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                                    </div>
-                                </div>
-
                                 <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
                             </form>
-                            <div>
+                            <div><br/>
                                 <p>Not a member?</p>
                                     <button className="btn btn-dark btn-lg btn-block" onClick={this.props.handleNewUser}>Sign Up</button>
                             </div>
-
-                            {
-                                this.state.errors.length > 0 && (
-                                    <ul style={{ color: "red" }}>
-                                            <li>{this.state.errors}</li>
-                                    </ul>
-                                )
-                            }
-                    
                         </div>
-                        
                     </div>
-              
-
         )
     }
 }

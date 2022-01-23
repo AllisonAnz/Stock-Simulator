@@ -3,7 +3,7 @@ import axios from "axios";
 import {Modal, Form, Button} from 'react-bootstrap'
 
 
-const BuyButton = ({price, stock_id}) => {
+const BuyButton = ({price, stock_id, searchStock}) => {
     const [shares, setShares] = useState(0)
     const [show, setShow] = useState(false);
 
@@ -16,21 +16,21 @@ const BuyButton = ({price, stock_id}) => {
     }
 
     const buyStock = () => {
-        console.log("working")
         axios.patch(`http://localhost:3000/stocks/${stock_id}`, 
         {
             shares: shares,
             avg_cost: price,
             option: "Purchased"
         },
-
+    
         { withCredentials: true })
             .then(()=> {
-                window.location.reload()
+              searchStock()
             })
             .catch((errors) => {
                 console.log(errors);
             })  
+           
     }
     return (
         <>
@@ -42,7 +42,7 @@ const BuyButton = ({price, stock_id}) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Buy Shares</Modal.Title>
                 </Modal.Header>
-                <Form onSubmit={handleSubmit}>
+                <Form className="purchase" onSubmit={handleSubmit}>
                 <Modal.Body>
                         <Form.Group className="mb-3" >
                             <Form.Label>Shares</Form.Label>

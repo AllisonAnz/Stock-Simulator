@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
     include CurrentUserConcern
+     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         user = User
-                .find_by(email: params["user"]["email"])
+                .find_by!(email: params["user"]["email"])
                 .try(:authenticate, params["user"]["password"])
 
         if user
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
             }, 
             status: :created
         else
-          render json:  {error: "Invalid Email or Password"}, status: :not_found
+          render json:  {error: "Invalid Password"}, status: :not_acceptable
         end
     end
 
@@ -40,6 +41,10 @@ class SessionsController < ApplicationController
     end
 
     private 
+
+      def render_not_found_response 
+        render json: { error: "Email Not found" }, status: :not_found
+    end
 
     
 end
