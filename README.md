@@ -17,9 +17,9 @@
   <h3 align="center">Stock Market Simulator</h3>
 
   <p align="center">
-    A Read Me template for your projects!
+    
     <br />
-    <a href="https://github.com/roshanlam/ReadMeTemplate/"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/AllisonAnz/stock-tracker/blob/master/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     ·
@@ -34,7 +34,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://media.giphy.com/media/7EX33f6oVyuPSMrSOV/giphy.gif" width="40" height="40" />
+<img src="https://media.giphy.com/media/7EX33f6oVyuPSMrSOV/giphy.gif" width="80" height="80" />
 
 
 There are so many great stock simulators out there, however, I didn't find one that really suited my needs so I created one! I wanted to create a simulator that I could learn about stock investing, without risking real money. 
@@ -49,7 +49,7 @@ You may also suggest changes by forking this repo and creating a pull request or
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+ Frameworksused while building this project. 
 * [Bootstrap](https://getbootstrap.com)
 * [Rails](https://rubyonrails.org/)
 * [React](https://reactjs.org/)
@@ -67,10 +67,10 @@ This section should list any major frameworks that you built your project using.
 This project uses two APIs to request data
 1. Create an IEX Cloud account and get a free API key [IEX Cloud](https://iexcloud.io/)
 2. Get a free API key for [AlphaAvantage](https://www.alphavantage.co/)
-3. Create a .env variable in the main directory 
-4. Enter your API keys in `.env`
+3. Create a .env variable in the projects main directory 
+4. Enter API keys in `.env`
 ```JS
-const API_KEY = 'ENTER YOUR API';
+
 API_KEY= `IEXCloud_API_KEY`
 
 ALPHA_API_KEY= `ALPHA_API_KEY`
@@ -90,9 +90,9 @@ ALPHA_API_KEY= `ALPHA_API_KEY`
 ```sh
     rails s
 ```
-Runs the Rails server as http://localhost:3000/
+Runs server as http://localhost:3000/
 
-* Frontend Server 
+* Frontend UI
 ```sh
     npm start --prefix client
 ```
@@ -103,7 +103,7 @@ Open http://localhost:4000 to view it in browser
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-This project can be used as a stock enthusist, or someone that wants to see how to create their own stock simulator. 
+This project can be used as a stock enthusist, or someone that wants to create their own trading simulator. 
 
 
 <!-- ROADMAP -->
@@ -119,11 +119,10 @@ Describe your License for your project.
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
-
 <!-- CONTACT -->
 ## 📫 Contact
 
-Allison Anzalone - AllisonAnzalone@gmail.com
+Allison Anzalone - [LinkedIn](https://www.linkedin.com/in/allison-anzalone/) AllisonAnzalone@gmail.com
 
 Project Link: [https://github.com/AllisonAnz/stock-tracker](https://github.com/AllisonAnz/stock-tracker)
 
