@@ -11,7 +11,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/AllisonAnz/stock-tracker">
-    <img src="https://img1.pnghut.com/14/23/13/r3h9C65nwv/diagram-graph-of-a-function-chart-symmetry-average.jpg" alt="Logo" width="80" height="80">
+    <img src="https://www.kindpng.com/picc/m/78-788160_transparent-stock-market-icon-png-png-download.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">FullStack Stock Market Simulator</h3>
