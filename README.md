@@ -34,7 +34,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
  <p align="center">
-<img src="https://media.giphy.com/media/7EX33f6oVyuPSMrSOV/giphy.gif" width="100" height="100" />
+<img src="https://media.giphy.com/media/7EX33f6oVyuPSMrSOV/giphy.gif" width="120" height="120" />
 </p>
 
 
