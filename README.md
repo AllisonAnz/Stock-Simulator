@@ -19,7 +19,7 @@
   <p align="center">
     
    <br />
-    <a href="https://github.com/roshanlam/ReadMeTemplate/"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/AllisonAnz/stock-tracker#readme"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     ·
