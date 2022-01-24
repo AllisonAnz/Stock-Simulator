@@ -11,7 +11,6 @@ class StocksController < ApplicationController
       render json: stock_quote
      
     else
-       #if params[:ticker]
         @stock= Functions::APIRequests.get_stock(params[:ticker]).to_json
         render json: @stock
     end
@@ -30,11 +29,7 @@ class StocksController < ApplicationController
             transactions: @stock.transactions.as_json(except: [:created_at, :updated_at])
     } 
   end
-  # refractor? maybe?
-  # stock: @stock.as_json(include: [transactions: {
-  #                                            except: [:created_at, :updated_at]
-  #                                                }], except: [:created_at, :updated_at]),
-
+ 
   def create
     add_stock = @current_user.stocks.find_or_create_by!(stock_params)
     render json: add_stock
@@ -74,7 +69,6 @@ class StocksController < ApplicationController
   end
 
   def find_chart 
-    #byebug
    stock = Functions::APIRequests.request_chart(params)
    render json: stock 
   end
@@ -89,8 +83,6 @@ class StocksController < ApplicationController
   def edit_stock_params
     params.permit(:shares, :avg_cost, :total_cost) 
   end
-
- 
 
    def render_unprocessable_entity_response(exception)
         render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity

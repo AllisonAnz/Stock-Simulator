@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
           session[:user_id] = user.id
           render json: {
               logged_in: true,
-              #user: user.as_json(:only => [:email, :id,], :include => [:stocks]), <=use this in refractor?
               user: user.as_json(:only => [:email, :id,]),
               stocks: user.stocks.as_json(except: [:created_at, :updated_at])
             }, 

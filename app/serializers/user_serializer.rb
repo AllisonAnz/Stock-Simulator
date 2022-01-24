@@ -3,5 +3,4 @@ class UserSerializer < ActiveModel::Serializer
   has_many :stocks
   has_many :transactions, through: :stocks
 
-  
 end

@@ -31,8 +31,4 @@ class TransactionsController < ApplicationController
     end
 end
 
-# stock_id: stock.id 
-# ticker: stock.ticker 
-# shares: params[:shares]
-# per_share: params[:avg_cost]
-# total : params[:shares] * params[:avg_cost]
+
