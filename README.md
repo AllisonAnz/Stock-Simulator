@@ -18,8 +18,8 @@
 
   <p align="center">
     
-    <br />
-    <a href="https://github.com/AllisonAnz/stock-tracker/blob/master/README.md"><strong>Explore the docs »</strong></a>
+   <br />
+    <a href="https://github.com/roshanlam/ReadMeTemplate/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     ·
@@ -33,8 +33,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-<img src="https://media.giphy.com/media/7EX33f6oVyuPSMrSOV/giphy.gif" width="80" height="80" />
+ <p align="center">
+<img src="https://media.giphy.com/media/7EX33f6oVyuPSMrSOV/giphy.gif" width="100" height="100" />
+</p>
 
 
 There are so many great stock simulators out there, however, I didn't find one that really suited my needs so I created one! I wanted to create a simulator that I could learn about stock investing, without risking real money. 
