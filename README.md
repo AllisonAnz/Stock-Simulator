@@ -14,7 +14,7 @@
     <img src="https://img1.pnghut.com/14/23/13/r3h9C65nwv/diagram-graph-of-a-function-chart-symmetry-average.jpg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Stock Market Simulator</h3>
+  <h3 align="center">FullStack Stock Market Simulator</h3>
 
   <p align="center">
     
@@ -50,7 +50,7 @@ You may also suggest changes by forking this repo and creating a pull request or
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
 ### Built With
- Frameworksused while building this project. 
+ Frameworks used while building this project. 
 * [Bootstrap](https://getbootstrap.com)
 * [Rails](https://rubyonrails.org/)
 * [React](https://reactjs.org/)
@@ -65,7 +65,7 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 
 ## Prerequisites
 
-This project uses two APIs to request data
+This project uses two APIs to requests
 1. Create an IEX Cloud account and get a free API key [IEX Cloud](https://iexcloud.io/)
 2. Get a free API key for [AlphaAvantage](https://www.alphavantage.co/)
 3. Create a .env variable in the projects main directory 
@@ -93,7 +93,7 @@ ALPHA_API_KEY= `ALPHA_API_KEY`
 ```
 Runs server as http://localhost:3000/
 
-* Frontend UI
+* Frontend Interface
 ```sh
     npm start --prefix client
 ```
@@ -115,7 +115,6 @@ See the [open issues](https://github.com/AllisonAnz/stock-tracker/issues) for a 
 
 <!-- LICENSE -->
 ## 📝 License
-Describe your License for your project. 
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
